@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:prettier": "npx prettier --check .",
-    "lint:prettier:fix": "npx prettier --write ."
+    "lint:prettier": "npx prettier --list-different \"*{.js,.json}\" \"**/*{.ts,.tsx,.json,.css,.scss,.html}\"",
+    "lint:prettier:fix": "npx prettier --write \"*{.js,.json}\" \"**/*{.ts,.tsx,.json,.css,.scss,.html}\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "13.2.4",
@@ -17,6 +18,8 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/node": "18.15.10",
     "@types/react": "18.0.30",
@@ -26,9 +29,15 @@
     "eslint-config-next": "13.2.4",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
     "tailwindcss": "^3.3.0",
     "typescript": "5.0.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint",
+    "*.{html,json}": "prettier --list-different"
   }
 }
